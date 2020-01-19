@@ -36,10 +36,25 @@ def bfs(graph, start, goal):
             if current == goal:
                 return visited
             neighbours = graph.verteses[current].neighbours
-            queue.extend(neighbours)
+            queue.extend(sorted(neighbours))
+    return visited
+
+
+def dfs(graph, start, goal):
+    stack = [start]
+    visited = []
+    while stack:
+        current = stack.pop()
+        if current not in visited:
+            visited.append(current)
+            if current == goal:
+                return visited
+            neighbours = graph.verteses[current].neighbours
+            stack.extend(sorted(neighbours))
     return visited
         
     
 
 
 print(bfs(graph, 'S', 'G'))
+print(dfs(graph, 'S', 'G'))
